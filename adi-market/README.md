@@ -1,81 +1,206 @@
-# ADI Market
+ADI Market
 
-## Descripción
+Ignacio Guajardo
 
-ADI Market es una plataforma web tipo Marketplace orientada al transporte de carga.
+Proyecto desarrollado para el módulo de Desarrollo Full Stack.
 
-Permite que transportistas publiquen espacio disponible en sus viajes y que clientes soliciten espacio para transportar mercancías entre distintos puntos del país.
+Descripción del Proyecto
 
-## Objetivo
+ADI Market (Automated Dispatch Interface) es una plataforma web que busca conectar empresas o personas que necesitan transportar carga con transportistas que disponen de espacio libre en sus rutas.
 
-Facilitar la conexión entre transportistas con capacidad disponible y clientes que requieren trasladar carga, optimizando el uso del espacio de transporte.
+La aplicación permite publicar espacios disponibles para transporte, visualizar publicaciones disponibles y gestionar usuarios mediante una interfaz moderna desarrollada con React.
 
-## Tecnologías utilizadas
+Objetivo
 
-### Frontend
+El objetivo principal es optimizar el uso de capacidad disponible en vehículos de transporte, permitiendo que usuarios encuentren rutas compatibles para sus cargas y que los transportistas puedan ofrecer espacios libres de manera sencilla.
 
-* React
-* React Router DOM
-* Bootstrap
+Hito 1: Planificación y Diseño
 
-### Backend
+Durante el desarrollo del Hito 1 se realizó:
 
-* Node.js
-* Express.js
-* PostgreSQL
+Diseño de Vistas
 
-## Funcionalidades principales
+Se definieron las siguientes pantallas principales:
 
-### Usuarios
+Home
+Marketplace
+Login
+Registro de usuarios
+Perfil de usuario
+Crear publicación
+Detalle de publicación
+Navegación
 
-* Registro de usuarios
-* Inicio de sesión
-* Gestión de perfil
+Se diseñó el flujo de navegación entre las diferentes vistas considerando:
 
-### Publicaciones
+Acceso público
+Acceso autenticado
+Flujo de publicaciones
+Gestión de usuarios
+Modelo de Datos
 
-* Crear publicación de transporte
-* Ver publicaciones disponibles
-* Ver detalle de publicación
-* Editar publicación
-* Eliminar publicación
+Se definieron las entidades principales:
 
-### Solicitudes
+Usuarios
+id
+nombre
+email
+contraseña
+avatar
+Publicaciones
+id
+origen
+destino
+fecha
+espacio disponible
+precio
+descripción
+Solicitudes
+id
+usuario
+publicación
+estado
+Tecnologías Definidas
 
-* Solicitar espacio de carga
-* Gestionar solicitudes realizadas
+Frontend:
 
-## Estructura inicial del proyecto
+React
+React Router
+Bootstrap
 
-src/
+Backend (planificado):
 
-* assets/
-* components/
-* context/
-* data/
-* pages/
-* routes/
-* styles/
+Node.js
+Express
 
-## Estado del proyecto
+Base de Datos (planificada):
 
-Proyecto en desarrollo como trabajo final del programa Full Stack JavaScript.
-
-Actualmente se encuentra en la etapa de construcción del Frontend utilizando React.
+PostgreSQL
 
 
-## Historial de avances
+Hito 2: Desarrollo Frontend
 
-### Hito 1
+Durante el Hito 2 se implementó la estructura inicial del proyecto utilizando React y Vite.
 
-* Diseño de interfaces
-* Modelo de datos
-* Navegación entre vistas
-* Contrato API REST
+Creación del Proyecto
 
-### Hito 2
+Se creó el proyecto mediante:
 
-* Configuración inicial de React y Vite
-* Estructura de carpetas
-* Creación de componentes base
+npm create vite@latest
 
+Instalación de dependencias:
+
+npm install
+npm install react-router-dom
+npm install bootstrap
+Implementación de React Router
+
+Se configuró navegación entre rutas mediante React Router.
+
+Rutas implementadas:
+
+Ruta	Vista
+/	Home
+/marketplace	Marketplace
+/login	Login
+/register	Registro
+Componentes Reutilizables
+
+Se desarrollaron componentes reutilizables para evitar duplicación de código.
+
+Navbar
+
+Componente encargado de:
+
+Navegación principal
+Buscador
+Acceso a vistas
+CardPublicacion
+
+Props utilizadas:
+
+<CardPublicacion
+  origen="Santiago"
+  destino="Temuco"
+  m3="20"
+  precio="45000"
+/>
+
+Uso de Props
+
+Se implementó el paso de propiedades entre componentes para renderizar información dinámica.
+
+Ejemplo:
+
+origen
+destino
+metros cúbicos disponibles
+precio
+Uso de Hooks
+
+Se implementó el Hook:
+
+useState
+
+Utilizado para almacenar y actualizar información ingresada por el usuario.
+
+Ejemplo implementado en Marketplace:
+
+const [origen, setOrigen] = useState("");
+
+Permitiendo visualizar cambios en tiempo real dentro de la interfaz.
+
+Uso de Context
+
+Se inició la implementación de Context API para manejar información global del usuario autenticado.
+
+Archivos utilizados:
+
+src/context/AuthContext.jsx
+
+Estructura del Proyecto
+src
+│
+├── assets
+├── components
+│   ├── Navbar.jsx
+│   └── CardPublicacion.jsx
+│
+├── context
+│   └── AuthContext.jsx
+│
+├── data
+│
+├── pages
+│   ├── Home.jsx
+│   ├── Marketplace.jsx
+│   ├── Login.jsx
+│   ├── Register.jsx
+│   ├── Profile.jsx
+│   ├── Detail.jsx
+│   └── CreatePost.jsx
+│
+├── routes
+│   └── AppRoutes.jsx
+│
+├── App.jsx
+└── main.jsx
+
+
+Estado Actual del Proyecto
+
+Actualmente ADI Market cuenta con:
+
+Navegación mediante React Router.
+Componentes reutilizables.
+Renderización dinámica mediante Props.
+Uso de Hooks.
+Integración inicial de Context API.
+Diseño responsive utilizando Bootstrap.
+Próximos Pasos
+Completar Context API.
+Implementar autenticación.
+Finalizar Perfil de Usuario.
+Crear formulario de publicaciones.
+Crear vista detalle de publicación.
+Conectar Backend y Base de Datos.
