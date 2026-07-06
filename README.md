@@ -188,10 +188,9 @@ src
 ├── App.jsx
 └── main.jsx
 
-
 Estado Actual del Proyecto
 
-Actualmente ADI Market cuenta con:
+Actualmente ADI_Market cuenta con:
 
 Navegación mediante React Router.
 Componentes reutilizables.
@@ -407,4 +406,3 @@ GET /api/perfil utilizando JWT
 Estas pruebas se pueden visualizar en la carpeta en ../Backend/Thunder Client.
 
 Al finalizar este hito se cuenta con una API REST funcional conectada a PostgreSQL, capaz de administrar publicaciones y usuarios, utilizando autenticación JWT, middleware de autorización, pruebas automatizadas con Supertest y pruebas manuales mediante Thunder Client.
-
