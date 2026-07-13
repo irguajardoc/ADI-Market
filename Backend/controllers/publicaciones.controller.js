@@ -53,24 +53,33 @@ export const obtenerPublicacionPorId = async (req, res) => {
 export const crearPublicacion = async (req, res) => {
   try {
     const {
-      titulo,
-      origen,
-      destino,
-      fecha_salida,
-      hora_salida,
-      estimado_llegada,
-      m3_disponible,
-      precio,
-      restricciones,
-      descripcion,
-      id_usuario
+    titulo,
+    origen,
+    destino,
+    fecha_salida,
+    hora_salida,
+    estimado_llegada,
+    m3_disponible,
+    precio,
+    restricciones,
+    descripcion
     } = req.body;
 
-    if (!titulo || !origen || !destino || !fecha_salida || !m3_disponible || !precio || !id_usuario) {
-      return res.status(400).json({
-        error: "Faltan datos obligatorios"
-      });
-    }
+    // El ID viene desde el JWT validado por el middleware.
+    const id_usuario = req.usuario.id_usuario;
+
+    if (
+      !titulo ||
+      !origen ||
+      !destino ||
+      !fecha_salida ||
+      !m3_disponible ||
+      !precio
+    ) {
+        return res.status(400).json({
+          error: "Faltan datos obligatorios"
+        });
+      }
 
     const resultado = await pool.query(
       `
