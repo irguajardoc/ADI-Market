@@ -1,26 +1,53 @@
 import { createContext, useState } from "react";
 
-// Exportamos el contexto para poder usarlo en Navbar
 export const AuthContext = createContext();
 
-// Provider que entrega el estado global a toda la app
 function AuthProvider({ children }) {
-  const [usuario, setUsuario] = useState({
-    nombre: "Ignacio",
-    email: "ignacio@adimarket.cl",
-    logueado: true
-  });
+  const usuarioGuardado = localStorage.getItem("usuario");
+  const tokenGuardado = localStorage.getItem("token");
+
+  const [usuario, setUsuario] = useState(
+    usuarioGuardado
+      ? JSON.parse(usuarioGuardado)
+      : null
+  );
+
+  const [token, setToken] = useState(
+    tokenGuardado || ""
+  );
+
+  const login = (usuarioData, tokenData) => {
+    localStorage.setItem(
+      "usuario",
+      JSON.stringify(usuarioData)
+    );
+
+    localStorage.setItem(
+      "token",
+      tokenData
+    );
+
+    setUsuario(usuarioData);
+    setToken(tokenData);
+  };
 
   const logout = () => {
-    setUsuario({
-      nombre: "",
-      email: "",
-      logueado: false
-    });
+    localStorage.removeItem("usuario");
+    localStorage.removeItem("token");
+
+    setUsuario(null);
+    setToken("");
   };
 
   return (
-    <AuthContext.Provider value={{ usuario, logout }}>
+    <AuthContext.Provider
+      value={{
+        usuario,
+        token,
+        login,
+        logout
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

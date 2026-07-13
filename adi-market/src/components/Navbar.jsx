@@ -1,16 +1,14 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
-import { Link } from 'react-router-dom';
 // Barra superior de ADI Market
 function Navbar() {
-    const { usuario, logout } = useContext(AuthContext);
+  const { usuario, logout } = useContext(AuthContext);
+
   return (
-    
-
     <nav className="navbar navbar-expand-lg bg-primary">
-
-      <div className="container-fluid px-3 ">
+      <div className="container-fluid px-3">
 
         {/* Logo */}
         <div className="text-white">
@@ -27,57 +25,71 @@ function Navbar() {
           />
         </form>
 
-        {usuario.logueado && (
-            <>
-              <span className="text-white me-3">
-                Hola, {usuario.nombre}
-              </span>
+        {/* Usuario logueado */}
+        {usuario && (
+          <>
+            <span className="text-white me-3">
+              Hola, {usuario.nombre}
+            </span>
 
-              <button
-                className="btn btn-light btn-sm"
-                onClick={logout}
-              >
-                Cerrar sesión
-              </button>
-            </>
-            )}
+            <button
+              className="btn btn-light btn-sm me-3"
+              onClick={logout}
+            >
+              Cerrar sesión
+            </button>
+          </>
+        )}
 
         {/* Menú */}
         <div>
-          <Link
-          to="/"
-          className="text-white text-decoration-none me-3"
-          >
-          Home
-          </Link>
 
           <Link
-          to="/marketplace"
-          className="text-white text-decoration-none me-3"
-          >
-          Marketplace
-          </Link>
-
-          <Link
-            to="/login"
+            to="/"
             className="text-white text-decoration-none me-3"
           >
-            Ingresar
+            Home
           </Link>
 
           <Link
-            to="/Register"
+            to="/marketplace"
             className="text-white text-decoration-none me-3"
           >
-            Registrarse
+            Marketplace
           </Link>
+
+          {usuario && (
+          <Link
+            to="/crear-publicacion"
+            className="text-white text-decoration-none me-3"
+          >
+            Publicar
+          </Link>
+           )}
+
+          {/* Solo mostrar si NO está logueado */}
+          {!usuario && (
+            <>
+              <Link
+                to="/login"
+                className="text-white text-decoration-none me-3"
+              >
+                Ingresar
+              </Link>
+
+              <Link
+                to="/register"
+                className="text-white text-decoration-none me-3"
+              >
+                Registrarse
+              </Link>
+            </>
+          )}
 
         </div>
 
       </div>
-
     </nav>
-
   );
 }
 

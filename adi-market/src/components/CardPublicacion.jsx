@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
+
 // Tarjeta de publicación
-function CardPublicacion({ origen, destino, m3, precio }) {
+function CardPublicacion({ id, origen, destino, m3, precio }) {
 
   return (
 
@@ -19,13 +21,23 @@ function CardPublicacion({ origen, destino, m3, precio }) {
 
         {/* Precio */}
         <p className="card-text">
-          Desde <strong>${precio}</strong>
+          Desde{" "}
+          <strong>
+            {new Intl.NumberFormat("es-CL", {
+              style: "currency",
+              currency: "CLP",
+              maximumFractionDigits: 0
+            }).format(Number(precio))}
+          </strong>
         </p>
 
         {/* Botón */}
-        <button className="btn btn-primary">
+        <Link
+          to={`/publicacion/${id}`}
+          className="btn btn-primary"
+        >
           Ver detalle
-        </button>
+        </Link>
 
       </div>
 
