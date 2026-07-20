@@ -44,6 +44,12 @@ export const register = async (req, res) => {
   } catch (error) {
     console.error(error);
 
+    if (error.code === "23505") {
+      return res.status(409).json({
+        error: "El correo ya está registrado"
+      });
+    }
+
     res.status(500).json({
       error: "Error al registrar usuario"
     });
