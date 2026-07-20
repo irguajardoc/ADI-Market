@@ -15,6 +15,7 @@ function Footer() {
         <small className="text-white-50">
           © {anioActual} ADI Market. Proyecto desarrollado por Ignacio Guajardo.
         </small>
+        
       </div>
     </footer>
   );
